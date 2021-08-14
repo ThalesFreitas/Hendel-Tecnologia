@@ -1,4 +1,4 @@
-# Projeto Handel Tecnologia Vaga FrontEnd ReactJS
+# Projeto Hendel Tecnologia Vaga FrontEnd ReactJS
 
 ### Tarefas:
 1. Adicionar paginação a listagem de produtos (manter a paginação após reload da página)
