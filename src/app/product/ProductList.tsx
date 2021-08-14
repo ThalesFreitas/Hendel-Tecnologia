@@ -23,7 +23,7 @@ function ProductList() {
 
 
   useEffect(() => {
-    repo.getProducts(current_page,page_size,predicate_price,predicate_quantity, id, name, price, quantity).then(response => 
+    repo.getProducts(current_page, page_size, predicate_price, predicate_quantity, id, name, price, quantity).then(response => 
       {
         setProductCollection(response)
         setTotal_Row_Count(response.totalRowCount)
@@ -41,10 +41,9 @@ function ProductList() {
 
 
 
-
   const pages = [];
   
-  for (let i = 1; i <= Math.ceil( total_row_count / page_size); i++) { //cria a quantidade de paginas
+  for (let i = 1; i <= Math.ceil( total_row_count / page_size); i++) { 
       pages.push(i);   
     }
     
@@ -55,20 +54,14 @@ function ProductList() {
       startPage = 0;
       endPage = pages.length;
     } else {
-      let maxPagesBeforeCurrentPage = Math.floor(maxPages / 2); //quantidade de botão a ser exibido antes da pagina atual
-      let maxPagesAfterCurrentPage = Math.ceil(maxPages / 2) - 1; //quantidade de botão a ser exibido antes da pagina atual
-    
-      if (current_page <= maxPagesBeforeCurrentPage) {
-          //página atual perto do início
+      if (current_page <= 2) {
           startPage = 0;
           endPage = maxPages;
     
-      } else if (current_page + maxPagesAfterCurrentPage >= pages.length) {
-          //página atual perto do fim
+      } else if (current_page + 2 >= pages.length) {
           startPage = pages.length - maxPages + 1;
           endPage = pages.length;
       } else {
-          // página atual em algum lugar no meio
           startPage = current_page - 2;
           endPage = current_page + 2;
       }
@@ -84,18 +77,17 @@ function ProductList() {
     }
 
     function handleID(id:string){
-      setCurrent_Page(0)
-      setID(String(id)) 
+        setCurrent_Page(0)
+        setID(String(id))
     }
     function handleName(name:string){
       setCurrent_Page(0)
       setName(String(name))
     }
   
-    function handlePrice(price:string) {
-      const predicate_price = document.querySelector('.predicate_price') as HTMLSelectElement
-      const predicate = predicate_price.value
-
+    function handlePredicatePrice(predicate:string) {
+      
+      
       if(predicate === "="){
         setPredicate_Price("eq")
       }else if (predicate === "<>"){
@@ -109,14 +101,16 @@ function ProductList() {
       }else {
         setPredicate_Price("lteq")
       } 
+    }
+    
+    function handlePrice(price:string) {
       setCurrent_Page(0)
-    setPrice(String(price))
+      setPrice(String(price))
+     
     }
   
 
-    function handleQuantity(quantity: string) {
-      const predicate_quantity = document.querySelector('.predicate_quantity') as HTMLSelectElement
-      const predicate = predicate_quantity.value
+    function handlePredicateQuantity(predicate:string){
       
       if(predicate === "="){
         setPredicate_Quantity("eq")
@@ -131,11 +125,12 @@ function ProductList() {
       }else {
         setPredicate_Quantity("lteq")
       }
+    }
+
+    function handleQuantity(quantity: string) {
       setCurrent_Page(0)
       setQuantity(String(quantity))
     }
-
- 
 
   return (
     <div>
@@ -201,7 +196,11 @@ function ProductList() {
                   <th className='py-1'>
                     <InputGroup>
                       <InputGroup.Prepend>
-                        <Form.Control as='select' size='sm'className={"predicate_price"}>
+                        <Form.Control as='select' size='sm' 
+                        className={"predicate_price"}
+                        onChange={(e) => 
+                          handlePredicatePrice(e.target.value)}
+                        >
                           
                           {
                             ['=', '<>', '>', '>=', '<', '<='].map((item, index) => 
@@ -219,7 +218,9 @@ function ProductList() {
                   <th className='py-1'>
                     <InputGroup >
                       <InputGroup.Prepend >
-                        <Form.Control as='select' size='sm' className={"predicate_quantity"}>
+                        <Form.Control as='select' size='sm' 
+                        onChange={(e) => handlePredicateQuantity(e.target.value)}
+                        >
                           {
                             ['=', '<>', '>', '>=', '<', '<='].map((item, index) => (
                               <option key={index} value={item}
@@ -228,7 +229,8 @@ function ProductList() {
                           }
                         </Form.Control>
                       </InputGroup.Prepend>
-                      <Form.Control size='sm' onChange={(e) => handleQuantity(String(e.target.value))} />
+                      <Form.Control size='sm' onChange={(e) => handleQuantity(String(e.target.value))} 
+                      />
                     </InputGroup>
                   </th>
                 </tr>

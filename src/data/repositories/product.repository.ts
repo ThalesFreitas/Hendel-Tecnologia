@@ -10,9 +10,8 @@ import { productCollectionMapper,productMapper,relatedProductMapper } from '../m
 
 export class IProductDepository implements ProductRepositoty {
   async getProducts(current_page:number ,page_size: number, predicate_price:string,predicate_quantity:string,id: string, name:string, price:string, quantity:string): Promise<Collection<ProductCollectionItem>> {
-    const response = await httpClient.get(`products?page=${current_page + 1}&page_size=${''}&q[id_eq]=${id}&q[name_cont]=${name}&q[price_${predicate_price}]=${price}&q[quantity_${predicate_quantity}]=${quantity}`)
+    const response = await httpClient.get(`products?page=${current_page + 1}&page_size=${page_size}&q[id_eq]=${id}&q[name_cont]=${name}&q[price_${predicate_price}]=${price}&q[quantity_${predicate_quantity}]=${quantity}`)
     return productCollectionMapper(response.data)
-    //&q[quantity_${predicate_quantity}]=${quantity}
   }
 
   async getProduct(id: number): Promise<Product> {

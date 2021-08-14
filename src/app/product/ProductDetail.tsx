@@ -1,6 +1,7 @@
 import {useParams} from 'react-router-dom'
 import { useState, useEffect,useCallback,FormEvent } from 'react'
 import { Product} from '../../domain/models/product.model'
+import {RelatedProduct} from '../../domain/models/related-product.model'
 import repo from '../../data/repositories/product.repository'
 
 import {Container,Content,RelatedProducts,RelatedProductsList,Toast} from './style'
@@ -10,15 +11,6 @@ import {AiOutlineClose} from 'react-icons/ai'
 interface Params {
   id: string;
 }
-
-interface RelatedProduct {
-  id: number
-  name: string
-  price: number
-  mainProductId: number 
-}
-
-
 
 const ProductDetail = () => {
   const [productDetail, setProductDetail] = useState<Product>()
@@ -48,30 +40,18 @@ const [message_toast,setMessage_Toast] = useState('')
             setNone_Product(true)
           }
           setRelated_Product(response.relatedProducts)
-          
-         
         } 
-      
-        
          )
-        
-         
-       
        } catch (error) {
         throw new Error("Erro ao buscar os dados");
        }finally {
         setLoading(false)
        }
     }
-    List()
-   
-       
+    List()   
   }, [id])
 
  
-  
- 
-  
  function handleChangeID(id: string){
     setRelated_Product_Id(Number(id))
  }
@@ -87,10 +67,8 @@ function handleToastView(){
 const handleNewProduct = useCallback(async (event: FormEvent) => {
   event.preventDefault()
   
- 
   try {
     setSubmit(true)
-   
    
     if(!related_product_id){
       setToast(true)
@@ -103,13 +81,13 @@ const handleNewProduct = useCallback(async (event: FormEvent) => {
       )
      
       
-     throw new Error("Preencha com um ID");
+     throw new Error("Preencha com um ID!");
      
     }
     
     if(related_product_id === Number(id)){
       handleToastView()
-      throw new Error('Produto relacionado não pode ser o mesmo de produto principal !');
+      throw new Error('Produto relacionado não pode ser o mesmo de produto principal!');
       
     }
 
@@ -138,15 +116,8 @@ const handleNewProduct = useCallback(async (event: FormEvent) => {
 
   
   } catch (error) {
-    //alert(error.name + ': ' + error.message);
-    //console.log(error.name);
-    
     setMessage_Toast(error.message)
-   
-    
-    //setMessage_Toast()
   }finally{
-    
     setSubmit(false)
   }
          
@@ -170,7 +141,6 @@ const handleRemoveProduct = useCallback(async (value:number) => {
     {loading === true ? <h3>Carregando...</h3> : ''}
   
     <Container>
-    
       <Content>
         <h3>Detalhes do produto</h3>
         <strong>Nome</strong>
@@ -183,7 +153,6 @@ const handleRemoveProduct = useCallback(async (value:number) => {
               </div>
               <p className="cash">{productDetail?.price}</p>
           </div>
-        
         <RelatedProducts>
           <div className={`${error === true ? 'msn_erro_activ' : 'msn_erro_inativ'}`}>
           <span >Preencha com um ID</span>
@@ -204,8 +173,6 @@ const handleRemoveProduct = useCallback(async (value:number) => {
             className={`${submit && 'submit_button'}`}
             >{submit ? 'Cadastrando' : 'Cadastrar Produto'}</button>
           </form>
-         
-         
           </header>
          
             <RelatedProductsList>
@@ -223,10 +190,7 @@ const handleRemoveProduct = useCallback(async (value:number) => {
                  
              </div>
              <AiOutlineClose onClick={() =>handleRemoveProduct(relate.id)}/>
-            </section>
-            
-             
-            
+            </section>  
               )}
           </RelatedProductsList>
           
