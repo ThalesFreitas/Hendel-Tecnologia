@@ -34,7 +34,7 @@ yarn start
 ## Filtragem por ID
 ![ID](https://github.com/ThalesFreitas/Hendel-Tecnologia/blob/master/assets/Filtrando_ID.png)
 
-## Filtragemo por Nome
+## Filtragem por Nome
 ![Nome](https://github.com/ThalesFreitas/Hendel-Tecnologia/blob/master/assets/Filtrando_Nome.png)
 
 ## Filtragem por Preço
