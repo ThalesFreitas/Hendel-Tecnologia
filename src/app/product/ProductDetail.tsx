@@ -4,7 +4,7 @@ import { Product} from '../../domain/models/product.model'
 import {RelatedProduct} from '../../domain/models/related-product.model'
 import repo from '../../data/repositories/product.repository'
 
-import {Container,Content,RelatedProducts,RelatedProductsList,Toast} from './style'
+import {Container,Content,RelatedProducts,RelatedProductsList,Toast} from './styledProductDetail'
 
 import {AiOutlineClose} from 'react-icons/ai'
 
