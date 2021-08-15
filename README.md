@@ -1,5 +1,7 @@
 # Projeto Hendel Tecnologia Vaga FrontEnd ReactJS
 
+Link do Desafio: https://github.com/Hendel-Tecnologia/teste-vaga-reactjs
+
 ### Tarefas:
 1. Adicionar paginação a listagem de produtos (manter a paginação após reload da página)
 2. Permitir filtra a listagem de produtos com base nos campos de busca disponíveis
@@ -26,22 +28,24 @@ yarn
 yarn start
 ```
 
+## Paginação
+![Paginação](https://github.com/ThalesFreitas/Hendel-Tecnologia/blob/master/assets/Paginacao.png)
 
-
-## Filtrando por ID
+## Filtragem por ID
 ![ID](https://github.com/ThalesFreitas/Hendel-Tecnologia/blob/master/assets/Filtrando_ID.png)
 
-## Filtrando por Nome
+## Filtragemo por Nome
 ![Nome](https://github.com/ThalesFreitas/Hendel-Tecnologia/blob/master/assets/Filtrando_Nome.png)
 
-## Filtrando por Preço maior que 30
+## Filtragem por Preço
 ![Preco](https://github.com/ThalesFreitas/Hendel-Tecnologia/blob/master/assets/Filtrando_Preco.png)
 
-## Filtrando por Quantidade maior que 40
+## Filtragem por Quantidade
 ![Quantidade](https://github.com/ThalesFreitas/Hendel-Tecnologia/blob/master/assets/Filtrando_Quantidade.png)
 
-## Pagina de detalhe do produto
+## Pagina de detalhes do produto
 ![Produto](https://github.com/ThalesFreitas/Hendel-Tecnologia/blob/master/assets/Detalhe_Produto.png)
+![Produto](https://github.com/ThalesFreitas/Hendel-Tecnologia/blob/master/assets/Pagina_Detalhe.png)
 
 # Erros a ser exibidos
 
